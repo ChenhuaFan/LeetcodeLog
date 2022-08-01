@@ -8,39 +8,18 @@ import java.util.Set;
 public class Solution {
 
     // q1
-    private boolean allZero(int[] nums) {
-        for (int num : nums) {
-            if (num != 0)
-                return false;
-        }
-        return true;
-    }
-
     public int minimumOperations(int[] nums) {
-        int steps = 0;
-        while (!allZero(nums)) {
-            int min = Integer.MAX_VALUE;
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] < min && nums[i] != 0) {
-                    min = nums[i];
-                }
-            }
-            //
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] != 0) {
-                    nums[i] -= min;
-                }
-            }
-            steps++;
+        Set<Integer> uniqueNums = new HashSet<>();
+        for (int num : nums) {
+            uniqueNums.add(num);
         }
-        return steps;
+        return uniqueNums.size();
     }
 
     // q2
     public int maximumGroups(int[] grades) {
         if (grades.length == 1)
             return 1;
-        Arrays.sort(grades);
         int n = grades.length,
                 k = 1,
                 ct = 0;
